@@ -49,8 +49,7 @@ body {
 }
 
 .cookie__wrapper {
-  width: 40%;
-  min-width: 550px;
+  width: 100%;
   max-height: 70%;
   position: absolute;
   top: 50%;
@@ -77,6 +76,13 @@ body {
   padding: 10px;
 }
 
+@media only screen and (min-width: 600px) {
+  .cookie__wrapper {
+    width: 40%;
+    min-width: 550px;
+  }
+}
+
 .cookie h3 {
   width: 100%;
   font-size: 2.5rem;
@@ -95,6 +101,13 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -104,14 +117,30 @@ body {
   border-radius: 10px;
 }
 
+@media only screen and (min-width: 600px) {
+  .cookie__element {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
 .cookie__element:hover {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
 .cookie__element span input {
   margin-left: 15px;
-  -webkit-transform: scale(2);
-          transform: scale(2);
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+@media only screen and (min-width: 600px) {
+  .cookie__element span input {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+  }
 }
 
 .cookie__buttons {
