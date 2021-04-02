@@ -69,18 +69,25 @@ class CookiesAlert {
     });
 
     this.vendorsAccept = Object.values(values);
-    console.log("dziala handleCheck");
   }
 
   //handle accept button, save chosen vendors in cookies and hide cookie alert
   handleAcceptBtn() {
     document.querySelector(".cookie__container").style.display = "none";
-    document.cookie = `Vendors=${this.vendorsAccept.toString()};`;
+    document.cookie = `Vendors=${this.vendorsAccept}; Expires=${this.handleExpire()}`;
   }
 
   // handle reject button and hide cookie alert
   handleRejectBtn() {
     document.querySelector(".cookie__container").style.display = "none";
+  }
+
+  handleExpire() {
+    const today = new Date();
+    today.setDate(today.getDate() + 1);
+    const endDate = today.toString();
+
+    return endDate;
   }
 }
 
