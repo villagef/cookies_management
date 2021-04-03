@@ -15,7 +15,7 @@ class CookiesAlert {
   // create list of vendors
   async manageCookies() {
     const mainWrapper = document.querySelector(".main__wrapper");
-
+    
     if (this.getCookie("Vendors") != null) {
       document.querySelector(".cookie").style.display = "none";
       mainWrapper.style.filter = "none";
@@ -42,7 +42,6 @@ class CookiesAlert {
     const vendors = await this.fetchData(this.API);
 
     this.vendors = Object.values(vendors);
-
     this.createList(this.vendors);
   }
 
@@ -50,6 +49,7 @@ class CookiesAlert {
   async fetchData(url) {
     const res = await fetch(url);
     const data = await res.json();
+
     return data.vendors;
   }
 
@@ -76,6 +76,7 @@ class CookiesAlert {
   handleCheck() {
     const checkboxes = document.querySelectorAll(`input[name="check"]:checked`);
     let values = [];
+
     checkboxes.forEach((checkbox) => {
       values.push(checkbox.value);
     });
@@ -83,27 +84,17 @@ class CookiesAlert {
     this.vendorsAccept = Object.values(values);
   }
 
-  //handle accept button, save chosen vendors in cookies and hide cookie alert
+  //handle accept button, save chosen vendors in cookies, hide cookie alert and setup cookie expire time
   handleAcceptBtn() {
     document.querySelector(".cookie").style.display = "none";
     document.querySelector(".main__wrapper").style.filter = "none";
-    document.cookie = `Vendors=${
-      this.vendorsAccept
-    }; Expires=${this.handleExpire()}`;
+    document.body.style.overflowY = "scroll";
+    document.cookie = `Vendors=${this.vendorsAccept}; max-age=86400; path=/;`;
   }
 
   // handle reject button and hide cookie alert
   handleRejectBtn() {
     window.location.href = "https://www.pudelek.pl/";
-  }
-
-  // handle expire date
-  handleExpire() {
-    const today = new Date();
-    today.setDate(today.getDate() + 1);
-    const endDate = today.toString();
-
-    return endDate;
   }
 
   // get cookie value
