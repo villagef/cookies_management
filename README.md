@@ -6,3 +6,6 @@
 ### When popup is active the background is blured and scolling is disabled.
 ### If the client unmatch every box and click accept button it will redirect to another website.
 ### When the client reject the cookie it will direct to another website.
+
+## Below there is a link to deployed project
+## https://cookies-manager.netlify.app
