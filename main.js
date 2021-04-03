@@ -16,6 +16,7 @@ class CookiesAlert {
   async manageCookies() {
     const mainWrapper = document.querySelector(".main__wrapper");
     
+    // check if cookie exists and make an action for styling
     if (this.getCookie("Vendors") != null) {
       document.querySelector(".cookie").style.display = "none";
       mainWrapper.style.filter = "none";
@@ -27,14 +28,21 @@ class CookiesAlert {
 
     this.pullVendors();
 
+    // onClick validate if any checkbox is matched and make an action
     this.acceptBtn.addEventListener("click", () => {
-      this.handleCheck();
-      this.handleAcceptBtn();
+      const checkboxes = document.querySelectorAll(`input[name="check"]:checked`);
+      if(checkboxes.length <= 0) {
+        this.handleReject()
+      } else {
+        this.handleCheck();
+        this.handleAccept();
+      }
     });
 
+    // onClick call the function
     this.rejectBtn.addEventListener("click", () => {
-      this.handleRejectBtn();
-    });
+      this.handleReject();
+    });    
   }
 
   //get all vendors from API and assign to array
@@ -85,7 +93,7 @@ class CookiesAlert {
   }
 
   //handle accept button, save chosen vendors in cookies, hide cookie alert and setup cookie expire time
-  handleAcceptBtn() {
+  handleAccept() {
     document.querySelector(".cookie").style.display = "none";
     document.querySelector(".main__wrapper").style.filter = "none";
     document.body.style.overflowY = "scroll";
@@ -93,7 +101,7 @@ class CookiesAlert {
   }
 
   // handle reject button and hide cookie alert
-  handleRejectBtn() {
+  handleReject() {
     window.location.href = "https://www.pudelek.pl/";
   }
 
